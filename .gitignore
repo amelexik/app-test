@@ -1,0 +1,5 @@
+/logs
+/app/config/local.php
+/vendor
+/.idea
+/composer.lock
