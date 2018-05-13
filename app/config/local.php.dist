@@ -1,7 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: amelex
- * Date: 5/11/18
- * Time: 12:38 AM
- */
+return [
+    'components' => [
+        'Db' => [
+            'user' => 'user',
+            'password' => 'password',
+            'db' => 'test-app.local',
+        ]
+    ]
+];
