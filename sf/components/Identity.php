@@ -13,12 +13,12 @@ Class Identity extends Component
     {
         parent::__construct($config);
 
-        if (isset($_SESSION['user']))
+        if (!isset($_SESSION['user']))
             $_SESSION['user'] = null;
 
         if (!empty($_SESSION['user'])) {
-            $this->_id = $_SESSION['user'];
-            $this->_login = $_SESSION['login'];
+            $this->_id = $_SESSION['user']['user_id'];
+            $this->_login = $_SESSION['user']['login'];
         }
     }
 

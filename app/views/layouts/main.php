@@ -8,6 +8,9 @@
     <title>Bootstrap 101 Template</title>
     <!-- Bootstrap -->
     <link href="/web/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     <link href="/web/css/main.css" rel="stylesheet">
 </head>
 <body>
@@ -16,7 +19,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <h1><?= Sf::app()->getParam('appName', 'Test App'); ?></h1>
+                <h1><a href="/"><?= Sf::app()->getParam('appName', 'Test App'); ?></a></h1>
                 <p><?= Sf::app()->getParam('appDescription', ''); ?></p>
                 <?php if (Sf::app()->Identity->getIsGuest()) { ?>
                     <a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-primary">Login</a>
@@ -26,15 +29,11 @@
                         <div class="modal-dialog">
                             <div class="loginmodal-container">
                                 <h1>Login to Your Account</h1><br>
-                                <form method="post">
+                                <form method="post" action="/">
                                     <input type="text" name="login" placeholder="Username">
                                     <input type="password" name="password" placeholder="Password">
                                     <input type="submit" class="login loginmodal-submit" value="Login">
                                 </form>
-
-                                <div class="login-help">
-                                    <a href="#">Register</a> - <a href="#">Forgot Password</a>
-                                </div>
                             </div>
                         </div>
                     </div>
