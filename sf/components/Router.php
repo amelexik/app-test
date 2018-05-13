@@ -94,6 +94,7 @@ class Router extends Component
     public static function redirect($location)
     {
         header("Location: $location");
+        die();
     }
 
 }

@@ -2,6 +2,7 @@
 Class BaseApp{
 
     private $_components;
+    private $_params;
     private $_controller;
 
     /**
@@ -20,6 +21,17 @@ Class BaseApp{
     }
 
     /**
+     * @param $name
+     * @param string $defaultValue
+     * @return string
+     */
+    public function getParam($name,$defaultValue = ''){
+        if (isset($this->_params[$name]))
+            return !empty($this->_params[$name]) ? $this->_params[$name] : $defaultValue;
+        return $defaultValue;
+    }
+
+    /**
      * BaseApp constructor.
      * @param $config
      */
@@ -31,6 +43,11 @@ Class BaseApp{
         if(isset($config['components']) && is_array($config['components']) && !empty($config['components'])){
             foreach ($config['components'] as $component => $componentConfig){
                 $this->_components[$component] = $this->createComponent($component,$componentConfig);
+            }
+        }
+        if(isset($config['params']) && is_array($config['params']) && !empty($config['params'])){
+            foreach ($config['params'] as $key => $value){
+                $this->_params[$key] = $value;
             }
         }
     }

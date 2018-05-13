@@ -56,8 +56,9 @@ class View
             include($layout);
             $returnContent = ob_get_clean();
             echo $returnContent;
+        }else{
+            echo $output;
         }
-        echo $output;
     }
 
     public function renderFile($view, $data)

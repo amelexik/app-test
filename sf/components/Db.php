@@ -73,7 +73,7 @@ Class Db extends Component
         try {
             $handler = $this->getHandler();
             $source = $handler->prepare($sqlQuery);
-            $source->execute();
+            $source->execute($params);
             $result = $source->fetchAll($fetchStyle);
             return $result;
         } catch (PDOException $e) {
@@ -95,7 +95,7 @@ Class Db extends Component
         try {
             $handler = $this->getHandler();
             $source = $handler->prepare($sqlQuery);
-            $source->execute();
+            $source->execute($params);
             $result = $source->fetch($fetchStyle);
             return $result;
         } catch (PDOException $e) {
@@ -116,7 +116,7 @@ Class Db extends Component
         try {
             $handler = $this->getHandler();
             $source = $handler->prepare($sqlQuery);
-            $source->execute();
+            $source->execute($params);
             $result = $source->fetch();
             return isset($result[0]) ? $result[0] : null;
         } catch (PDOException $e) {
