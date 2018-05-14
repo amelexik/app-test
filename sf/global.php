@@ -1,4 +1,8 @@
 <?php
+/**
+ * @return mixed
+ * Для удобного обращения к компонентам
+ */
 function request()
 {
     return Sf::app()->Request;

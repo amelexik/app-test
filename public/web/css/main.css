@@ -211,7 +211,6 @@
 
     font-size: 9pt;
     color: #a7a7a7;
-    white-space: nowrap;
     vertical-align: top;
 
 }
@@ -223,9 +222,6 @@
 }
 
 .form-comments-table tr td {
-
-    white-space: nowrap;
-
 }
 
 .form-comments-table tr:nth-child(1) td:nth-child(1) {
