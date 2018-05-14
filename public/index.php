@@ -1,7 +1,6 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors',1);
-require_once '../vendor/autoload.php';
 require_once '../sf/Sf.php';
 require_once '../sf/global.php';
 
