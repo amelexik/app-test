@@ -207,11 +207,17 @@
 
 }
 
+.commentstep-4 {margin-left: 144px}
+.commentstep-5 {margin-left: 192px}
+.commentstep-6 {margin-left: 240px}
+.commentstep-7 {margin-left: 288px}
+
 .form-comments-table tr:nth-child(1) td:nth-child(1) {
 
     font-size: 9pt;
     color: #a7a7a7;
     vertical-align: top;
+    white-space: nowrap;
 
 }
 
