@@ -34,9 +34,9 @@ Class SiteController extends Controller
             $message = strip_tags(Sf::app()->Request->getPost('message'));
             if(!empty($message)){
                 Comments::model()->add(Sf::app()->Identity->getId(),$message);
-                header('location:/');
-                die();
             }
         }
+        header('location:/');
+        die();
     }
 }
