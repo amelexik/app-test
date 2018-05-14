@@ -1,15 +1,20 @@
 <div class="chatContainer">
-    <?php
-    $comments = Comments::model()->getComments('/');
-    ?>
     <div class="chatTitleContainer">Comments</div>
     <div class="chatHistoryContainer">
-        <?php if ($comments = Comments::model()->getComments('/')) { // todo через Рекуест ккласт получить текщий УРЛ ?>
-            <ul class="formComments">
-                <?php Sf::app()->getController()->renderComments(['comments' => $comments]); ?>
+        <?php if ($comments = Comments::model()->getComments('/', 0, Comments::$pageSize)) { // todo через Request ккласт получить текщий УРЛ ?>
+            <ul class="formComments" id="loadComments">
+                <?php echo Sf::app()->getController()->renderComments(['comments' => $comments]); ?>
             </ul>
         <?php } ?>
     </div>
+
+    <?php if(Comments::model()->getTotalPages() > 1){ ?>
+    <div class="container" style="margin-top: 30px; margin-bottom: 30px;">
+        <div class="text-center" id="loadMoreButton">
+            <button data-next-page="2" class="btn btn-primary loadComments">Загрузить предыдущие комментарии</button>
+        </div>
+    </div>
+    <?php } ?>
 
     <form method="post" action="/site/postComment">
         <div class="input-group input-group-sm chatMessageControls">
@@ -23,6 +28,7 @@
         </div>
     </form>
 </div>
+
 
 <?php
 /**

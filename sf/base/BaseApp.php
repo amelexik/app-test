@@ -69,4 +69,8 @@ Class BaseApp{
             return $this->{$name};
         return null;
     }
+
+    public function end(){
+        die();
+    }
 }

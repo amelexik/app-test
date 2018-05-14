@@ -5,6 +5,8 @@
  */
 Class Comments extends Model
 {
+
+    public static $pageSize = 5;
     /**
      * @var string
      */
@@ -160,5 +162,13 @@ Class Comments extends Model
             ':pid'     => $parent_id,
         ];
         return $this->db->execute($query, $params);
+    }
+
+    public function getTotalCount(){
+        return (int) $this->db->queryScalar("SELECT count(comment_id) FROM {$this->table} WHERE pid IS NULL");
+    }
+
+    public function getTotalPages(){
+        return ceil($this->getTotalCount() / self::$pageSize);
     }
 }

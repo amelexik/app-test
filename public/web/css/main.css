@@ -118,7 +118,6 @@
 .chatHistoryContainer {
 
     padding: 20px;
-    height: 400px;
     width: 100%;
     background-color: #f4f4f4;
     border-top: 1px solid #e1e1e1;
@@ -176,8 +175,6 @@
 .formComments {
 
     list-style-type: none;
-    overflow-y: scroll;
-    height: 100%;
     padding-bottom: 60px;
     padding-left: 0px;
 

@@ -75,6 +75,38 @@ Class SiteController extends Controller
         die();
     }
 
+    public function actionLoadComments(){
+
+        sleep(1);
+
+        $data = ['messages'=>'','pager'=>''];
+
+        $page = intval(request()->getPost('page'));
+        if (!$page) return;
+
+        $total = Comments::model()->getTotalCount();
+        $pages = ceil($total/Comments::$pageSize);
+
+
+        if($page <= $pages){
+            $offset = (Comments::$pageSize * ($page-1));
+
+            $page++;
+
+
+            $data = [
+                'messages' => Self::renderComments([
+                    'comments' => Comments::model()->getComments('/', $offset, Comments::$pageSize)
+                ]),
+                'pager'    => $pages >= $page ? '<button data-next-page="'.$page.'" class="btn btn-primary loadComments">Загрузить предыдущие комментарии</button>' : ''
+            ];
+        }
+
+        echo json_encode($data);
+        Sf::app()->end();
+
+    }
+
 
     /**
      *
@@ -104,7 +136,7 @@ Class SiteController extends Controller
      */
     public static function renderComments($data)
     {
-        $view = New View();
-        echo $view->renderFile(VIEWS_PATH . DS . 'blocks' . DS . 'comments_block.php', $data);
+        $view = New View($data,__FILE__); // todo пофиксить
+        return $view->renderFile(VIEWS_PATH . DS . 'blocks' . DS . 'comments_block.php', $data);
     }
 }

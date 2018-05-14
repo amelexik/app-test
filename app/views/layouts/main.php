@@ -8,7 +8,7 @@
     <!-- Bootstrap -->
     <link href="/web/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-    <link href="/web/css/main.css" rel="stylesheet">
+    <link href="/web/css/main.css?v=2" rel="stylesheet">
 </head>
 <body>
 
@@ -53,7 +53,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-<script src="/web/js/common.js?v=1"></script>
+<script src="/web/js/common.js?v=2"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="/web/js/bootstrap.min.js"></script>
 </body>

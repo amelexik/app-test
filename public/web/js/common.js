@@ -3,10 +3,10 @@ $(document).ready(function () {
     /**
      * Ответ
      */
-    $('.reply').click(function () {
+    $(document).on('click', '.reply', function () {
         var commentId = $(this).data('commentId');
         var header = 'Новый коментарий';
-        if(!isNaN(commentId) && commentId > 0){
+        if (!isNaN(commentId) && commentId > 0) {
             $('#commentFormModal input[name="parent_id"]').val(commentId);
             header = 'Новый ответ на коментарий #' + commentId;
         }
@@ -26,10 +26,10 @@ $(document).ready(function () {
     /**
      * Редактирование
      */
-    $('.edit').click(function () {
+    $(document).on('click', '.edit', function () {
         var commentId = $(this).data('commentId');
         var text = '';
-        if(!isNaN(commentId) && commentId > 0){
+        if (!isNaN(commentId) && commentId > 0) {
             $('#updateFormModal input[name="comment_id"]').val(commentId);
             text = $('#comment-' + commentId + ' .text').text();
             $('#updateFormModal textarea').text(text);
@@ -48,10 +48,42 @@ $(document).ready(function () {
     });
 
 
+    /**
+     * AJAX load comments
+     */
+    $(document).on('click', '.loadComments:enabled', function () {
+        var page = $(this).data('nextPage');
 
+        $(this).prop('disabled', true);
+        var that = this;
 
+        if (!isNaN(page) && page > 0) {
+            $.ajax({
+                type: 'post',
+                url: '/site/loadComments',
+                dataType: 'json',
+                data: {
+                    page: page
+                },
+                success: function (data) {
+                    if ('messages' in data && data.messages != '') {
+                        console.log(data.messages);
+                        $('#loadComments').append(data.messages);
+                    }
+                    if ('pager' in data) {
+                        $('#loadMoreButton').html(data.pager);
+                    }
+                },
+                error: function () {
 
-    $(".comment").unbind().click(function () {
+                },
+            }).always(function () {
+                $(that).prop('disabled', false);
+            });
+        }
+    });
+
+    $(document).on('click', '.comment', function () {
 
         var currentComment = $(this).data("commentid");
 
@@ -60,34 +92,23 @@ $(document).ready(function () {
     });
 
 
-    $(".commentLi").hover(function () {
+    $(document).on(
+        {
+            mouseenter: function () {
+                //stuff to do on mouse enter
 
-        var currentComment = $(this).data("commentid");
+                var currentComment = $(this).data("commentid");
 
-        $("#comment-" + currentComment).stop().animate({
-            opacity: "1",
-            backgroundColor: "#f8f8f8",
-            borderLeftWidth: "4px"
-        }, {
-            duration: 100, complete: function () {
-            }
-        });
-
-    }, function () {
-
-        var currentComment = $(this).data("commentid");
-
-        $("#comment-" + currentComment).stop().animate({
-            opacity: "1",
-            backgroundColor: "#fff",
-            borderLeftWidth: "1px"
-        }, {
-            duration: 100, complete: function () {
-            }
-        });
-
-        $("#commentactions-" + currentComment).slideUp("fast");
-
-    });
+                $("#comment-" + currentComment).stop().animate({
+                    opacity: "1",
+                    backgroundColor: "#f8f8f8",
+                    borderLeftWidth: "4px"
+                }, {
+                    duration: 100, complete: function () {
+                    }
+                });
+            },
+        }
+    );
 
 });
