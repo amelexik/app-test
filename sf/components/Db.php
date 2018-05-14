@@ -20,8 +20,7 @@ Class Db extends Component
             $this->_handler =
                 new PDO('mysql:host=' . $this->host . ';dbname=' . $this->db, $this->user, $this->password, array(PDO::ATTR_PERSISTENT => true));
             $this->_handler->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-
+            $this->_handler->exec("set names utf8");
         } catch (PDOException $e) {
             $this->close();
             throw new Exception($e->getMessage(), E_USER_ERROR);
