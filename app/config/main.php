@@ -2,7 +2,7 @@
 return [
     'params'     => [
         'appName'        => 'Simple Test App',
-        'appDescription' => 'This App only for test, text PHP knowledge',
+        'appDescription' => 'This App only for test, test PHP knowledge',
     ],
     'components' => [
         'Db'       => [

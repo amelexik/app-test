@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?= Sf::app()->getParam('appName', 'Test App'); ?> - <?= Sf::app()->getParam('appDescription', ''); ?></title>
+    <title><?= Sf::app()->getParam('appName', 'Test App'); ?>
+        - <?= Sf::app()->getParam('appDescription', ''); ?></title>
     <!-- Bootstrap -->
     <link href="/web/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
@@ -19,24 +20,25 @@
                 <h1><a href="/"><?= Sf::app()->getParam('appName', 'Test App'); ?></a></h1>
                 <p><?= Sf::app()->getParam('appDescription', ''); ?></p>
                 <?php if (Sf::app()->Identity->getIsGuest()) { ?>
-                    <a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-primary">Login</a>
+                    <p>U can add, edit, drop, reply comments - just <a href="#" data-toggle="modal" data-target="#login-modal">sign in</a>! Enjoy</p>
+                <?php } else { ?>
+                    <p>Hello <?=identity()->getLogin(); ?>! <a href="/site/logout" class="btn btn-primary">Logout</a></p>
+                <?php } ?>
 
-                    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                         aria-hidden="true" style="display: none;">
-                        <div class="modal-dialog">
-                            <div class="loginmodal-container">
-                                <h1>Login to Your Account</h1><br>
-                                <form method="post" action="/">
-                                    <input type="text" name="login" placeholder="Username">
-                                    <input type="password" name="password" placeholder="Password">
-                                    <input type="submit" class="login loginmodal-submit" value="Login">
-                                </form>
-                            </div>
+                <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                     aria-hidden="true" style="display: none;">
+                    <div class="modal-dialog">
+                        <div class="loginmodal-container">
+                            <h1>Login to Your Account</h1><br>
+                            <form method="post" action="/">
+                                <input type="text" value="user" name="login" placeholder="Username">
+                                <input type="password" value="password" name="password" placeholder="Password">
+                                <input type="submit" class="login loginmodal-submit" value="Login">
+                            </form>
                         </div>
                     </div>
-                <?php } else { ?>
-                    <a href="/site/logout" class="btn btn-primary">Logout</a>
-                <?php } ?>
+                </div>
+
             </div>
         </div>
 

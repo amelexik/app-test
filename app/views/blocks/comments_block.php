@@ -25,7 +25,7 @@
                                             class="edit btn btn-default btn-sm"><i
                                                 class="fa fa-pencil"></i> Edit
                                     </button>
-                                    <a href="/site/deleteComment?comment_id=<?= $comment['comment_id']; ?>"
+                                    <a onclick="return confirm('Confirm?');" href="/site/deleteComment?comment_id=<?= $comment['comment_id']; ?>"
                                        class="btn btn-danger btn-sm"><i
                                                 class="fa fa-trash"></i>Delete
                                     </a>

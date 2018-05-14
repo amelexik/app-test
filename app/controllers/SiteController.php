@@ -17,8 +17,7 @@ Class SiteController extends Controller
 
             if (!empty($login) && !empty($password)) {
                 $auth = identity()->authenticate(['login' => $login, 'password' => $password]);
-                header('location:/');
-                die();
+                Sf::app()->redirect('/');
             }
         }
 
@@ -30,8 +29,7 @@ Class SiteController extends Controller
     public function actionLogout()
     {
         identity()->logoutUser();
-        header('location:/');
-        die();
+        Sf::app()->redirect('/');
     }
 
     /**
@@ -46,8 +44,7 @@ Class SiteController extends Controller
                 Comments::model()->add(identity()->getId(), $message, $parent_id);
             }
         }
-        header('location:/');
-        die();
+        Sf::app()->redirect('/');
     }
 
     /**
@@ -66,30 +63,30 @@ Class SiteController extends Controller
                 if ($data = Comments::model()->getByPk($commentId)) {
 
                     if ($data['user'] == $userId) {
-                        Comments::model()->updateByPk($commentId,$message);
+                        Comments::model()->updateByPk($commentId, $message);
                     }
                 }
             }
         }
-        header('location:/');
-        die();
+        Sf::app()->redirect('/');
     }
 
-    public function actionLoadComments(){
+    public function actionLoadComments()
+    {
 
         sleep(1);
 
-        $data = ['messages'=>'','pager'=>''];
+        $data = ['messages' => '', 'pager' => ''];
 
         $page = intval(request()->getPost('page'));
         if (!$page) return;
 
         $total = Comments::model()->getTotalCount();
-        $pages = ceil($total/Comments::$pageSize);
+        $pages = ceil($total / Comments::$pageSize);
 
 
-        if($page <= $pages){
-            $offset = (Comments::$pageSize * ($page-1));
+        if ($page <= $pages) {
+            $offset = (Comments::$pageSize * ($page - 1));
 
             $page++;
 
@@ -98,7 +95,7 @@ Class SiteController extends Controller
                 'messages' => Self::renderComments([
                     'comments' => Comments::model()->getComments('/', $offset, Comments::$pageSize)
                 ]),
-                'pager'    => $pages >= $page ? '<button data-next-page="'.$page.'" class="btn btn-primary loadComments">Загрузить предыдущие комментарии</button>' : ''
+                'pager'    => $pages >= $page ? '<button data-next-page="' . $page . '" class="btn btn-primary loadComments">Загрузить предыдущие комментарии</button>' : ''
             ];
         }
 
@@ -125,8 +122,7 @@ Class SiteController extends Controller
                 }
             }
         }
-        header('location:/');
-        die();
+        Sf::app()->redirect('/');
     }
 
 
@@ -136,7 +132,6 @@ Class SiteController extends Controller
      */
     public static function renderComments($data)
     {
-        $view = New View($data,__FILE__); // todo пофиксить
-        return $view->renderFile(VIEWS_PATH . DS . 'blocks' . DS . 'comments_block.php', $data);
+        return View::renderFile(VIEWS_PATH . DS . 'blocks' . DS . 'comments_block.php', $data);
     }
 }

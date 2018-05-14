@@ -73,4 +73,9 @@ Class BaseApp{
     public function end(){
         die();
     }
+
+    public function redirect($url){
+        header('location: '.$url);
+        die();
+    }
 }

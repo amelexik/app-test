@@ -27,8 +27,6 @@ class View
         if (!$controller) {
             return null;
         }
-
-
         if (!empty($controller->layout)) {
             return LAYOUT_PATH . DS . $controller->layout . '.php';
         }
@@ -49,7 +47,7 @@ class View
 
     public function render()
     {
-        $output = $this->renderFile($this->path, $this->data);
+        $output = self::renderFile($this->path, $this->data);
         if ($layout = $this::getLayoutViewPath()){
             $content = $output;
             ob_start();
@@ -61,7 +59,7 @@ class View
         }
     }
 
-    public function renderFile($view, $data)
+    public static function renderFile($view, $data)
     {
         $data = $data;
         ob_start();
