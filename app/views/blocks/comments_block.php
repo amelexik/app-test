@@ -45,6 +45,6 @@
     </li>
 
 
-    <? if ($comment['children']) SiteController::renderComments(['comments' => $comment['children']]); ?>
+    <? if ($comment['children']) echo SiteController::renderComments(['comments' => $comment['children']]); ?>
 
 <?php } ?>

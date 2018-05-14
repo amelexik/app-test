@@ -152,8 +152,7 @@ Class Comments extends Model
      * @param $message
      * @return mixed
      */
-    public
-    function add($user, $message, $parent_id = null)
+    public function add($user, $message, $parent_id = null)
     {
         $query = "INSERT INTO {$this->table} (user,text,pid) VALUES (:user,:message,:pid)";
         $params = [
